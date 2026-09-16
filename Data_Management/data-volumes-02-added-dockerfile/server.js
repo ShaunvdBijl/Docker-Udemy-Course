@@ -17,6 +17,8 @@ app.get('/', (req, res) => {
   res.sendFile(filePath);
 });
 
+console.log("Working!!!");
+
 app.get('/exists', (req, res) => {
   const filePath = path.join(__dirname, 'pages', 'exists.html');
   res.sendFile(filePath);
@@ -36,10 +38,12 @@ app.post('/create', async (req, res) => {
     if (exists) {
       res.redirect('/exists');
     } else {
-      await fs.rename(tempFilePath, finalFilePath);
+      await fs.copyFile(tempFilePath, finalFilePath);
+      await fs.unlink(tempFilePath);
       res.redirect('/');
     }
   });
 });
 
-app.listen(80);
+app.listen(process.env.PORT);
+
