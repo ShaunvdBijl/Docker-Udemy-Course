@@ -67,11 +67,15 @@ docker inspect my-image:tag
 
 ## Images & Registry
 
-**Manage images:**
+**Manage images and registry access:**
 ```bash
 docker images
 docker pull image:tag
 docker push repo/image:tag
+docker login
+# docker login <registry-url>
+docker logout
+# docker logout <registry-url>
 ```
 
 ---
